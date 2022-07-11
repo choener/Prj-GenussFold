@@ -1,0 +1,10 @@
+packages:
+  ./ADPfusion
+  ./ADPfusionSubword
+  ./bimaps
+  ./DPutils
+  ./ForestStructures
+  ./FormalGrammars
+  ./GenussFold
+  ./OrderedBits
+  ./PrimitiveArray
