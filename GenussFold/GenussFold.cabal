@@ -1,0 +1,154 @@
+cabal-version:  2.2
+name:           GenussFold
+version:        0.0.0.3
+author:         Christian Hoener zu Siederdissen, 2015-2022, Dustyn Eggers, 2020-2022
+copyright:      Christian Hoener zu Siederdissen, 2015-2022
+homepage:       https://github.com/choener/GenussFold
+bug-reports:    https://github.com/choener/GenussFold/issues
+maintainer:     choener@bioinf.uni-leipzig.de
+category:       Formal Languages, Bioinformatics
+license:        GPL-3.0-or-later
+license-file:   LICENSE
+build-type:     Simple
+stability:      experimental
+tested-with:    GHC == 9.0
+synopsis:       MCFGs for Genus-1 RNA Pseudoknots
+description:
+                <http://www.bioinf.uni-leipzig.de/Software/gADP/ generalized Algebraic Dynamic Programming>
+                .
+                Genus-1 RNA pseudoknot grammars implemented with a multiple
+                context-free language. Compared to the usual implementations
+                that are based on explicit recursions, an implementation based
+                on a formal grammar is much more pleasing to write.
+                .
+                Consult the README for details.
+                .
+                * @BioInf.GenussFold.PKN@: Recursive pseudoknots with a simple
+                  basepair maximization scoring scheme.
+                .
+
+
+
+Extra-Source-Files:
+  README.md
+  changelog.md
+
+
+
+flag debug
+  description:  dump intermediate Core files
+  default:      False
+  manual:       True
+
+
+
+library
+  build-depends: base                   >= 4.7      && < 5.0
+               , ansi-wl-pprint         >= 0.6.7
+               , bytestring             >= 0.10
+               , containers
+               , data-default           >= 0.5
+               , lens                   >= 4.0
+               , mtl                    >= 2.0
+               , semigroups             >= 0.16
+               , template-haskell
+               , text                   >= 1.0
+               , transformers           >= 0.3
+               , unordered-containers   >= 0.2
+               , vector                 >= 0.10
+               --
+               , ADPfusion              >= 0.6.0
+               , ADPfusionSubword       >= 0.0.0
+               , FormalGrammars         >= 0.4.0
+               , PrimitiveArray         >= 0.10.2
+               -- (temporary before I update the deps to github)
+               , fused-effects
+               , parsers
+               , trifecta
+  exposed-modules:
+    BioInf.GenussFold
+    BioInf.GenussFold.PKN
+  default-language:
+    Haskell2010
+  default-extensions: BangPatterns
+                    , DataKinds
+                    , DeriveDataTypeable
+                    , FlexibleContexts
+                    , KindSignatures
+                    , MultiParamTypeClasses
+                    , PolyKinds
+                    , QuasiQuotes
+                    , TemplateHaskell
+                    , TypeApplications
+                    , TypeFamilies
+                    , TypeOperators
+                    , UnicodeSyntax
+  ghc-options:
+    -O2
+    -funbox-strict-fields
+--    -fllvm -optlo-O3
+--    -fcpr-off
+--    -fno-liberate-case
+  if flag(debug)
+    ghc-options:
+      -ddump-to-file
+      -ddump-simpl
+      -ddump-stg
+      -dsuppress-all
+
+
+
+-- Wrapper for the library
+
+executable GenussFold
+  build-depends: base
+               , cmdargs          >= 0.10
+               --
+               , FormalGrammars
+               , GenussFold
+  hs-source-dirs:
+    src
+  default-language:
+    Haskell2010
+  default-extensions: DeriveDataTypeable
+                    , RecordWildCards
+  main-is:
+    GenussFold.hs
+  ghc-options:
+    -O2
+    -funbox-strict-fields
+--    -fllvm -optlo-O3
+
+
+
+test-suite haskell-c-impl
+  type:
+    exitcode-stdio-1.0
+  main-is:
+    haskell-c-impl.hs
+  ghc-options:
+    -threaded -rtsopts -with-rtsopts=-N -O2 -funbox-strict-fields
+  hs-source-dirs:
+    tests
+  default-language:
+    Haskell2010
+  default-extensions: BangPatterns
+                    , CPP
+                    , ForeignFunctionInterface
+                    , TemplateHaskell
+  build-depends: base
+               , QuickCheck
+               , test-framework               >= 0.8
+               , test-framework-quickcheck2   >= 0.3
+               , test-framework-th            >= 0.2
+               --
+               , GenussFold
+  c-sources: C/genussfold.c
+  cc-options: -fPIC
+
+
+
+source-repository head
+  type: git
+  location: git://github.com/choener/GenussFold
+
