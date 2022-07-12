@@ -38,11 +38,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1639009740,
-        "narHash": "sha256-tJ1qDXqjk4v56OYIGt+aJ+KdAxV6Xt0EE+OwekPt4+g=",
+        "lastModified": 1657614982,
+        "narHash": "sha256-brRkJJiKlRsT62bU5Q2r8oAcglYj2xRhhpFkC156duQ=",
         "owner": "choener",
         "repo": "ghcicabal",
-        "rev": "5c6a1b0d937a5d7dc01d75c16a214c9eb8c1abc3",
+        "rev": "744133f8e11233eae26f13d05e05e8748e70c4e8",
         "type": "github"
       },
       "original": {
