@@ -55,8 +55,9 @@
           cabal-install
           haskellPackages.haskell-language-server
           haskellPackages.hls-tactics-plugin
-          nodejs # required for lsp
-          pkgs.ghcicabal # be explicit to get the final package
+          haskellPackages.implicit-hie
+          nodejs
+          pkgs.ghcicabal
         ] ++ sharedBuildInputs;
       }; # devShell
       apps = {

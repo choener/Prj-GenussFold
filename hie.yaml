@@ -1,20 +1,85 @@
 cradle:
   cabal:
-    - path: "./"
-      component: "lib:GenussFold"
-    - path: "./deps/ADPfusion"
+    - path: "./ADPfusion/./"
       component: "lib:ADPfusion"
-    - path: "./deps/ADPfusionSubword"
+
+    - path: "./ADPfusion/tests"
+      component: "ADPfusion:test:properties"
+
+    - path: "./ADPfusion/src"
+      component: "ADPfusion:exe:NeedlemanWunsch"
+
+    - path: "./ADPfusion/src"
+      component: "ADPfusion:exe:SmithWaterman"
+
+    - path: "./ADPfusion/src"
+      component: "ADPfusion:exe:Sparse"
+
+    - path: "./ADPfusion/src"
+      component: "ADPfusion:exe:spectest"
+
+    - path: "./ADPfusionSubword/./"
       component: "lib:ADPfusionSubword"
-    - path: "./deps/bimaps"
-      component: "lib:bimaps"
-    - path: "./deps/OrderedBits"
-      component: "lib:OrderedBits"
-    - path: "./deps/DPutils"
+
+    - path: "./DPutils/lib"
       component: "lib:DPutils"
-    - path: "./deps/FormalGrammars"
-      component: "lib:FormalGrammars"
-    - path: "./deps/ForestStructures"
+
+    - path: "./DPutils/tests"
+      component: "DPutils:test:properties"
+
+    - path: "./DPutils/tests"
+      component: "DPutils:bench:benchmark"
+
+    - path: "./DPutils/tests"
+      component: "DPutils:bench:streaming"
+
+    - path: "./ForestStructures/./"
       component: "lib:ForestStructures"
-    - path: "./deps/PrimitiveArray"
+
+    - path: "./ForestStructures/tests"
+      component: "ForestStructures:test:properties"
+
+    - path: "./ForestStructures/tests"
+      component: "ForestStructures:bench:benchmark"
+
+    - path: "./FormalGrammars/./"
+      component: "lib:FormalGrammars"
+
+    - path: "./FormalGrammars/tests"
+      component: "FormalGrammars:test:properties"
+
+    - path: "./GenussFold/./"
+      component: "lib:GenussFold"
+
+    - path: "./GenussFold/src"
+      component: "GenussFold:exe:GenussFold"
+
+    - path: "./GenussFold/tests"
+      component: "GenussFold:test:haskell-c-impl"
+
+    - path: "./OrderedBits/lib"
+      component: "lib:OrderedBits"
+
+    - path: "./OrderedBits/tests"
+      component: "OrderedBits:bench:benchmark"
+
+    - path: "./OrderedBits/tests"
+      component: "OrderedBits:test:properties"
+
+    - path: "./PrimitiveArray/./"
       component: "lib:PrimitiveArray"
+
+    - path: "./PrimitiveArray/tests"
+      component: "PrimitiveArray:test:properties"
+
+    - path: "./PrimitiveArray/bench"
+      component: "PrimitiveArray:bench:Lookup"
+
+    - path: "./bimaps/lib"
+      component: "lib:bimaps"
+
+    - path: "./bimaps/tests"
+      component: "bimaps:bench:BenchmarkBimaps"
+
+    - path: "./bimaps/tests"
+      component: "bimaps:test:properties"
